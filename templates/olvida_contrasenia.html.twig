@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperación de Contraseña</title>
+  <!-- Agregar Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilos personalizados */
+    body {
+      background-color: #f8f9fa;
+    }
+    .logo{
+      border-radius: 50%;
+      border: 1px solid black;
+    }
+    .recovery-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .recovery-card {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .recovery-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo {
+      max-width: 100px;
+    }
+    .recovery-heading {
+      margin-top: 20px;
+    }
+    .recovery-instructions {
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .recovery-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .recovery-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="recovery-container">
+    <div class="recovery-card">
+      <div class="recovery-header">
+        <img src="{{asset('imagenes/logoredsocial.png')}}" alt="Logo" class="logo">
+        <h2 class="recovery-heading">Recuperación de Contraseña</h2>
+      </div>
+      <p class="recovery-instructions">Ingresa tu dirección de correo electrónico y se cambiará su contraseña.</p>
+      {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+      <form method="POST">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Contraseña nueva</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Repita la contraseña</label>
+          <input type="password" id="repeatpassword" name="repeatpassword" class="form-control" required>
+        </div>
+  
+        <button type="submit" class="recovery-button">Cambiar Contraseña</button>
+      </form>
+  
+      <div class="recovery-footer" style="margin-top: 6%;">
+        <p>¿Recordaste tu contraseña? <a href="{{path('app_login')}}">Inicia sesión</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- Agregar Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

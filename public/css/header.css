@@ -1,0 +1,62 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.perfil {
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 10%;
+}
+
+.imagenes, .perfils {
+    width: 6%; /* Tamaño fijo para las imágenes de navegación */
+    margin-right: 8px;
+}
+
+#navbarNav{
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+    z-index: 99;
+}
+
+.nav-link{
+    width: 30%;
+}
+
+.navbar-toggler {
+    margin-left: 2%;
+    margin-top: 0; /* Ajusta el margen superior del botón */
+    margin-bottom: 0; /* Ajusta el margen inferior del botón */
+}
+
+#header {
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.navbar-nav{
+    margin-left: 2%;
+}
+
+@media (max-width: 520px) {
+    .perfil {
+        border-radius: 50%;
+    }
+
+    .imagenes, .perfils {
+        width: 15%; /* Ajusta el tamaño de las imágenes de navegación para dispositivos móviles */
+    }
+
+    #header {
+        margin-bottom: 5%; /* Espacio adicional en la parte inferior del header en dispositivos móviles */
+        display: flex;
+        width: 100%;
+    }
+}
+.navbar{
+    width: 100%;
+}

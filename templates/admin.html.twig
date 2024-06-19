@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Búsqueda de Usuarios</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+    </head>
+<body>
+    {% include "headeradmin.html.twig" %}
+    <div id="content-wrapper">
+
+	<div style="border:1px #e8e8e8 solid;margin:0px 0px 10px 0px">
+		<div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">
+			Bienvenido, Administrador</div>
+		<div style="padding:8px;font-size:13px;">
+			Esta es la página de la administración de Gademo. A continuación, usted decidirá que es lo que desea hacer		</div>
+	</div>
+
+	<div style="border:1px #e8e8e8 solid;width:49%;float:left;margin:10px 0px 10px 0px">
+		<div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">
+			Contenido Administración</div>
+		<div style="padding:8px;font-size:13px;">
+			A continuación, usted podrá gestionar los diferentes usuarios existentes ya sea para banear, desbanear o 
+            realizar el crud de los usuarios, es decir, crear usuarios, modificar usuarios y borrar usuarios	
+        </div>
+	</div>
+
+	<div style="border:1px #e8e8e8 solid;width:49%;float:right;margin:10px 0px 10px 0px">
+		<div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">
+			¿Para qué sirve esto?</div>
+		<div style="padding:8px;font-size:13px;">
+			Esto nos servirá para tener un poco de orientación, sobre lo que vayamos a realizar en un futuro
+            y así poder gestionar los usuarios de forma eficaz.		
+        </div>
+	</div>
+
+
+
+</div>
+</body>
+</html>

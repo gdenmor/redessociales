@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% include "headeradmin.html.twig" %}
+    <div id="content-wrapper">
+        <div class="container">
+            <h1 class="my-4">Modificar Usuario</h1>
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="mb-3">
+                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.usuario, 'Usuario', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.usuario, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.usuario) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.nombre_completo, 'Nombre Completo', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nombre_completo, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nombre_completo) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.genero, 'Género', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.genero, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.genero) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.descripcion, 'Descripción', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.descripcion, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.descripcion) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.foto, 'Foto', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.foto, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.foto) }}
+            </div>
+            <div class="mb-3" style="display:none;">
+                {{ form_label(form.password, 'Foto', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.password) }}
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" style="margin-left: 40%;margin-top: 5%;">Guardar Cambios</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</body>
+</html>

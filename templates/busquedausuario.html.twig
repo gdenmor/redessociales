@@ -1,0 +1,287 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Usuarios</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="{{asset('css/header.css')}}" rel="stylesheet">
+    <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/siguiendo.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/carrusel.js')}}" type="text/javascript"></script>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .profile-header {
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile-info{
+            display: flex;
+            margin-top: 10%;
+        }
+        .profile-info h1 {
+            margin: 0;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .post {
+            margin-bottom: 20px;
+        }
+        .post img {
+            width: 100%;
+        }
+        .datos{
+            margin-left: 5%;
+        }
+        hr{
+            margin-top: 35px;
+        }
+        .btn-follow {
+            background-color: #0095f6; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 4px; /* Bordes redondeados */
+            padding: 8px 16px; /* Espaciado interior */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Negrita */
+            cursor: pointer; /* Cambio de cursor al pasar */
+            outline: none; /* Sin contorno al hacer clic */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+            margin-left: 20%;
+            border-radius: 8px;
+        }
+
+        .btn-follow:hover {
+            background-color: #0077b5; /* Cambio de color de fondo al pasar el cursor */
+        }
+
+        .btn-siguiendo {
+            background-color: #EAEDED; /* Color de fondo transparente */
+            color: #262626; /* Color del texto */
+            border: 1px solid #dbdbdb; /* Borde sólido */
+            border-radius: 4px; /* Bordes redondeados */
+            padding: 8px 16px; /* Espaciado interior */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Negrita */
+            cursor: pointer; /* Cambio de cursor al pasar */
+            outline: none; /* Sin contorno al hacer clic */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transiciones suaves */
+            margin-left: 20%;
+            border-radius: 8px;
+        }
+
+        .btn-siguiendo:hover {
+            background-color: #fafafa; /* Cambio de color de fondo al pasar el cursor */
+        }
+
+        .post {
+				max-width: 600px;
+				margin: 20px auto;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.post-header {
+				padding: 10px;
+				display: flex;
+				align-items: center;
+			}
+			.post-header img {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				margin-right: 10px;
+			}
+			.post-header .username {
+				font-weight: bold;
+			}
+			.post-image img {
+				width: 100%;
+				display: block;
+			}
+            @media (max-width: 500px){
+                .profile-header{
+                    display: block;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
+                .profile-pic{
+                    margin-top: 4%;
+                }
+                .datos{
+                    margin-top: 8%;
+                }
+                #user{
+                    margin-top: 10%;
+                }
+            }
+			.post-footer {
+				padding: 10px;
+			}
+            .comment {
+                border-top: 1px solid #ddd;
+                padding: 10px;
+            }
+            .comment .username {
+                font-weight: bold;
+            }
+            .comment p {
+                margin: 5px 0;
+            }
+            .prev-arrow, .next-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pr{
+            display: flex;
+        }
+        .prev-arrow {
+            left: 10px;
+        }
+        .next-arrow {
+            right: 10px;
+        }
+        .prev-arrow:hover, .next-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .image-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .image-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .post-image {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Aspect ratio 1:1 */
+        }
+        #user{
+            font-size: 19px;
+            margin-left: 5%;
+            margin-top: 8%;
+        }
+
+    </style>
+</head>
+<body>
+{% include "header.html.twig" %}
+<div class="profile-container">
+    <input type="hidden" id="id" value="{{usuario.id}}"/>
+    <input type="hidden" id="idlogueado" value="{{app.user.id}}"/>
+        <div class="profile-header">
+            <div class="pr">
+                {% if usuario.foto %}
+                    <img class="profile-pic" src="{{ asset('imagenes/' ~ usuario.foto) }}">
+                {% else %}
+                    <img class="profile-pic" src="{{ asset('imagenes/perfil.png') }}">
+                {% endif %}
+                <p id="user"><strong>{{usuario.usuario}}</strong></p>
+                <div class="datos" style="margin-top: 8%;">
+                    {% if app.user in usuario.seguidores %}
+                        <input class="btn-siguiendo" type="button" value="Siguiendo">
+                    {% else %}
+                        <input class="btn-follow" type="button" value="Seguir">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="datos">
+                    <p><strong>Publicaciones</strong></p>
+                    <p>{{usuario.publicaciones|length}}</p>
+                </div>
+                <div class="datos">
+                    <p id="seg"><strong>Seguidores</strong></p>
+                    <p id="seguidores">{{usuario.seguidores|length}}</p>
+                </div>
+                <div class="datos">
+                    <p><strong>Siguiendo</strong></p>
+                    <p id="siguiendo">{{usuario.seguidos|length}}</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 8%;">
+                {% if usuario.descripcion %}
+                    <p style="margin-left: 3%; margin-top: 5%;">
+                        {{usuario.descripcion}}
+                    </p>
+                {% endif %}
+        </div>
+        
+        {% for publicacion in usuario.publicaciones %}
+            {% if publicacion.tipo.id == 1 %}
+                <div class="post">
+			    <input class="id" type="hidden" value="{{publicacion.id}}"/>
+				<div class="post-header">
+                    <input class="si" type="hidden" value="{{publicacion.usuario.id}}"/>
+				    {% if publicacion.Usuario.foto %}
+						<img src="{{ asset('imagenes/' ~ publicacion.Usuario.foto) }}">
+					{% else %}
+						<img src="{{ asset('imagenes/perfil.png') }}">
+					{% endif %}
+					<div class="username">{{publicacion.Usuario.usuario}}</div>
+				</div>
+				<div class="post-image">
+                    <span class="prev-arrow">&#9664;</span>
+                    <div class="image-slide">
+                        <img src="{{ asset('imagenes/' ~ publicacion.archivos[0]) }}" alt="Publicación" class="img-fluid">
+                    </div>
+                    <span class="next-arrow">&#9654;</span>
+                </div>
+				<!-- Pie de la publicación -->
+				<div class="post-footer">
+					<img class="comentario" style="width:10%; margin-right:3%;" src="{{asset('imagenes/comentario.png')}}">
+					<img class="guardado" style="width:7%; margin-right:3%;" src="{{asset('imagenes/guardado.png')}}">
+					<img class="like" style="width:7%; margin-right:5%;" src="{{asset('imagenes/like.png')}}">
+					<img class="rt" style="width:7%; margin-right:5%;" src="{{asset('imagenes/retweet.png')}}">
+				</div>
+                <br>
+				<div style="margin-left: 3%;">
+					{{publicacion.descripcion|raw}}
+				</div>
+			</div>
+            <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

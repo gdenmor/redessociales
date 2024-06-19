@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Red Social</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+  @media (max-width: 500px){
+    #contenedor {
+      width: 90%;
+    }
+  }
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #contenedor {
+    max-width: 1200px;
+    margin: 50px auto;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .form-container {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .instagram-header {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: auto;
+  }
+  
+  .login-container {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .forgot-password {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+  }
+  
+  #button {
+    background-color: rgb(52, 166, 52);
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #button:hover {
+    background-color: #28721b;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .register-link a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .or-separator {
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .or-separator::before,
+  .or-separator::after {
+    content: "";
+    display: inline-block;
+    width: 45%;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .or-separator span {
+    position: relative;
+    padding: 0 10px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .google-login {
+    background-color: #dd4b39;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .google-login:hover {
+    background-color: #c23321;
+  }
+
+  .google-login-button {
+    margin-top: 10px;
+  }
+
+  #google{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: Averta,Avenir,Helvetica Neue,Calibri,Helvetica,Roboto,sans-serif;
+    box-sizing: border-box;
+    margin-top: 10px !important;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0);
+    user-select: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    white-space: normal;
+    text-decoration: none;
+    padding: 12px 24px;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    transition: background 100ms linear;
+    background: #80a3db;
+    color: #fff;
+    text-shadow: 0px -1px 0 rgba(0,0,0,.2);
+    border-radius: 99999px;
+  }
+
+  #facebook{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: Averta,Avenir,Helvetica Neue,Calibri,Helvetica,Roboto,sans-serif;
+    box-sizing: border-box;
+    margin-top: 10px !important;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0);
+    user-select: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    white-space: normal;
+    text-decoration: none;
+    padding: 12px 24px;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    transition: background 100ms linear;
+    background: #416fb9;
+    color: #fff;
+    text-shadow: 0px -1px 0 rgba(0,0,0,.2);
+    border-radius: 99999px;
+  }
+
+  #google:hover{
+    background: #6287c2;
+  }
+  </style>
+</head>
+<body>
+    <div id="contenedor">
+      <div class="content-wrapper">
+        <div class="form-container">
+        {% for flash_message in app.session.flashbag.get('error') %}
+          <div class="alert alert-danger">{{ flash_message }}</div>
+        {% endfor %}
+          <div class="instagram-header">
+            <img style="border-radius:50%;border: 1px solid black;" src="{{asset('imagenes/logoredsocial.png')}}" alt="Mi red social" class="logo">
+          </div>
+          <div class="login-container">
+          <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div class="form-group">
+                  <label for="username">Email</label>
+                  <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                </div>
+                <div class="form-group">
+                  <a href="{{path('app_forgotpassword')}}" class="forgot-password">¿Has olvidado tu contraseña?</a>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                      value="{{ csrf_token('authenticate') }}"
+                >
+
+                
+                <input type="hidden" name="_target_path" value='/rol'> 
+
+                <input type="submit" id="button" value="Iniciar Sesión" />
+            </form>
+            <div class="register-link">
+              ¿No tienes una cuenta? <a href="{{path('app_registro')}}">Regístrate</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

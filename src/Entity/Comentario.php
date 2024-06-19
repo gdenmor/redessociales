@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Esta es la entidad referente a los comentarios que nos encontraremos en una publicación
+ */
+
 #[ORM\Entity(repositoryClass: ComentarioRepository::class)]
 class Comentario
 {

@@ -1,0 +1,74 @@
+<header id="header">
+    <nav class="navbar navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if app.user.foto %}
+            <a class="navbar-brand" href="{{ path('perfil') }}">
+                <img src="{{ asset('imagenes/' ~ app.user.foto) }}" class="perfil" alt="Profile Image">
+            </a>
+        {% else %}
+            <a class="navbar-brand" href="{{ path('perfil') }}">
+                <img src="{{ asset('imagenes/perfil.png') }}" class="perfil" alt="Profile Image">
+            </a>
+        {% endif %}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('app_main') }}">
+                        <img src="{{ asset('imagenes/home.png') }}" class="imagenes" alt="Home Icon">Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_búsqueda') }}">
+                        <img src="{{ asset('imagenes/busqueda.png') }}" class="imagenes" alt="Search Icon">Búsqueda
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('explorar') }}">
+                        <img src="{{ asset('imagenes/explorar.png') }}" class="imagenes" alt="Explore Icon">Explorar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('mensajes') }}">
+                        <img src="{{ asset('imagenes/mensajes.png') }}" class="imagenes" alt="Messages Icon">Mensajes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('crea_publicacion') }}">
+                        <img src="{{ asset('imagenes/crear.png') }}" class="imagenes" alt="Create Icon">Crear
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% if app.user.foto %}
+                        <a class="nav-link" href="{{ path('perfil', { id: app.user.id }) }}">
+                            <img src="{{ asset('imagenes/' ~ app.user.foto) }}" class="perfils" alt="Profile Icon">Perfil
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{{ path('perfil', { id: app.user.id }) }}">
+                            <img src="{{ asset('imagenes/perfil.png') }}" class="perfils" alt="Profile Icon">Perfil
+                        </a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <img src="{{ asset('imagenes/logout.png') }}" class="imagenes" alt="Logout Icon">Cerrar sesión
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('crea_historia') }}">
+                        <img class="imagenes" src="{{ asset('imagenes/historias.png') }}" class="otra" alt="Story Icon">Subir Historia
+                    </a>
+                </li>
+                {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}">
+                            <img src="{{ asset('imagenes/perfil.png') }}" class="imagenes">Admin
+                        </a>
+                    </li>
+                {% endif %}
+                
+            </ul>
+        </div>
+    </nav>
+</header>
